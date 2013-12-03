@@ -14,9 +14,11 @@
 
 # Data files
 *.csv
+*.tsv
 *.txt
 *.zip
 *.dat
+*.json
 data
 
 # Compiled python
