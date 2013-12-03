@@ -1,0 +1,73 @@
+<html>
+    <head>
+
+        <script type="text/javascript" src="../../libraries/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="../../libraries/underscore-min.js"></script>
+        <script type="text/javascript" src="../../libraries/d3/d3.min.js"></script>
+        <script type="text/javascript" src="../../libraries/topojson/topojson.js"></script>
+        <script type="text/javascript" src="../../libraries/datamaps.world.min.js"></script>
+        <script type="text/javascript" src="../../libraries/datamaps.usa.min.js"></script>
+        
+        <script>
+            function init()
+            {
+
+                function isNumber(n) {
+                      return !isNaN(parseFloat(n)) && isFinite(n);
+                  }
+
+                var map = new Datamap({
+                    element: document.getElementById("basic"),
+                      scope: 'usa'
+                });
+
+                function build_locations( locations )
+                {
+                    var bubbles = new Array;
+                    _.each( locations, function(element){  
+
+
+                        if (isNumber( element[0] ) ){
+                            bubbles.push( { latitude: element[0],
+                                longitude: element[1],
+                                radius: 5} )
+                        }
+
+                    } ); 
+
+                    map.bubbles( bubbles.slice( 0, 100 ));
+                }
+                
+                (function () {
+                    $.ajax({
+                        'global': false,
+                        'url': 'locations.json',
+                        'dataType': "json",
+                        'success': function (data) {
+                            //json = data;
+                            build_locations( data );
+                        }
+                    });
+                
+                })(); 
+
+                //map.bubbles([
+                //{
+                //    name: 'Castle Bravo',
+                //    radius: 5,
+                //    yeild: 15000,
+                //    country: 'USA',
+                //    significance: 'First dry fusion fuel "staged" thermonuclear weapon; a serious nuclear fallout accident occurred',
+                //    fillKey: 'USA',
+                //    date: '1954-03-01',
+                //    latitude: data[1][0],
+                //    longitude: data[1][1]
+                //}]);
+            }
+        </script>
+        <body onload="init()">
+            <div id="basic"></div>
+        </body>
+    </head>
+</html>
+
