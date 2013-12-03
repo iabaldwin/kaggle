@@ -1,4 +1,0 @@
-kaggle
-======
-
-Kaggle Collection
