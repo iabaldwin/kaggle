@@ -16,8 +16,6 @@ class Tags:
 
             f = Document.Document( i )
    
-            #self._tag_list |= set( f._tags )
-
             for tag in f._tags:
 
                 if tag in self._tag_list:

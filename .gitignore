@@ -14,10 +14,14 @@
 
 # Data files
 *.csv
+*.tsv
 *.txt
 *.zip
 *.dat
+*.json
 data
+
+# External libraries
 libraries
 
 # Compiled python
