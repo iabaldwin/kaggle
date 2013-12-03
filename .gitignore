@@ -18,7 +18,9 @@
 *.zip
 *.dat
 data
-libraries
 
 # Compiled python
 *.pyc
+
+# Text deitrus
+*.swp
