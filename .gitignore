@@ -17,4 +17,8 @@
 *.txt
 *.zip
 *.dat
+data
 libraries
+
+# Compiled python
+*.pyc
