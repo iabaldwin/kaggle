@@ -22,14 +22,13 @@ class Airport:
 
         try:
             self._lat  = utils.Geo.NorthingEastingToDecimal( *self._northing )
-
             self._long = utils.Geo.NorthingEastingToDecimal( *self._easting )
+        
         except:
-            self._lat = self._long = 0
+            self._lat = self._long = float('NaN')
 
-    def __repr__(self):
-      
-        return '[%s, %s] <%s,%s> @ [%s, %s][%f, %f]' % (self._icode, self._code, self._name, self._country, ' '.join(self._northing), ' '.join( self._easting), self._lat, self._long )
+    #def __repr__(self):
+        #return '[%s, %s] <%s,%s> @ [%s, %s][%f, %f]' % (self._icode, self._code, self._name, self._country, ' '.join(self._northing), ' '.join( self._easting), self._lat, self._long )
 
 class Airports:
 
@@ -41,11 +40,6 @@ class Airports:
  
             self._airports = map( lambda x: Airport(x), airports )
     
-            #DXB = self['DXB']
-            #JNB = self['JNB']
-            
-            #self._airports = [DXB, JNB]
-
     def __getitem__(self,_str):
        
         return [item for item in self._airports if (item._code == _str )]
@@ -56,15 +50,20 @@ class Airports:
 
     def ToJson(self):
 
-        locations = []
-        [ locations.append( airport_tuple )  for airport_tuple in map( lambda airport: (airport._lat, airport._long), self._airports ) ]
+        #locations = []
+        #[ locations.append( airport_tuple )  for airport_tuple in map( lambda airport: (airport._lat, airport._long), self._airports ) ]
+   
+        valid_locations = []
+        for airport in self._airports:
+            if ( airport._country == "USA" and airport._lat > 10.0  ):
+
+                valid_locations.append( { 'designator': airport._icode, 'lat':airport._lat, 'long':airport._long } )
 
         with open( 'airport_locations.json', 'w' ) as handle:
-            json.dump(locations, handle )
+            json.dump(valid_locations, handle )
 
 if __name__=="__main__":
 
-    #A = Airports( '../data/GlobalAirportDatabase.txt' )
     A = Airports( '../data/USAirports.txt' )
 
     A.ToJson()

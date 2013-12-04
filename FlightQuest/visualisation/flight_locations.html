@@ -10,22 +10,15 @@
         <script type="text/javascript" src="js/utils.js"></script>
         <script type="text/javascript" src="js/us_map.js"></script>
         <script type="text/javascript" src="js/flight_locations.js"></script>
-        <script type="text/javascript" src="js/airport_locations.js"></script>
 
         <script>
 
             function init()
             {
+                var map;
                 load_map();
-                
-                airport_locations();
-                flight_locations();
-
-                plot_sample_flights();
-
-                
+                plot_flight_locations();
             }
-        
         </script>
 
         <body onload="init()">

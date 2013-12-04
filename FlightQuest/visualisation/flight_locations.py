@@ -17,9 +17,11 @@ class LatLongExtractor:
 
         for element in self._target:
 
+            element.replace( "\"", "" ) 
+
             splits = element.split(",")
 
-            self._positions.append( (splits[4].replace( "\"", "" ) , splits[5].replace( "\"", "" )) )
+            self._positions.append( { 'lat': splits[4], 'long': splits[5], 'airport': splits[2] })
 
         with open( target, 'w' ) as t:
 
@@ -30,7 +32,7 @@ if __name__=="__main__":
 
 
     if len(sys.argv) < 2:
-        LatLongExtractor( open('../data/TestFlights.csv', 'r') ).Build( 'locations.json' )
+        LatLongExtractor( open('../data/TestFlights.csv', 'r') ).Build( 'flight_locations.json' )
     else:
         sys.exit( "err" )
 
