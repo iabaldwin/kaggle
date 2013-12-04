@@ -1,11 +1,11 @@
 <html>
     <head>
 
-        <script type="text/javascript" src="../../libraries/node_modules/jquery/tmp/jquery.js"></script>
-        <script type="text/javascript" src="../../libraries/node_modules/underscore/underscore-min.js"></script>
-        <script type="text/javascript" src="../../libraries/node_modules/d3/d3.min.js"></script>
-        <script type="text/javascript" src="../../libraries/node_modules/topojson/topojson.js"></script>
-        <script type="text/javascript" src="../../libraries/datamaps/datamaps.usa.min.js"></script>
+        <script type="text/javascript" src="../../libraries/js/node_modules/jquery/tmp/jquery.js"></script>
+        <script type="text/javascript" src="../../libraries/js/node_modules/underscore/underscore-min.js"></script>
+        <script type="text/javascript" src="../../libraries/js/node_modules/d3/d3.min.js"></script>
+        <script type="text/javascript" src="../../libraries/js/node_modules/topojson/topojson.js"></script>
+        <script type="text/javascript" src="../../libraries/js/datamaps/datamaps.world.min.js"></script>
         
         <script>
             function init()
@@ -17,11 +17,12 @@
 
                 var map = new Datamap({
                     element: document.getElementById("basic"),
-                    scope: 'usa'
+                    scope: 'world'
                 });
 
                 function build_locations( locations )
                 {
+                    console.log( locations );
                     var bubbles = new Array;
                     _.each( locations, function(element){  
                         if (isNumber( element[0] ) ){
@@ -29,7 +30,6 @@
                                 longitude: element[1],
                                 radius: 2} )
                         }
-
                     } ); 
 
                     map.bubbles( bubbles );
@@ -38,7 +38,7 @@
                 (function () {
                     $.ajax({
                         'global': false,
-                        'url': 'locations.json',
+                        'url': 'airport_locations.json',
                         'dataType': "json",
                         'success': function (data) {
                             build_locations( data );
