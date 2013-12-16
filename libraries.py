@@ -1,5 +1,6 @@
-import os
-import json
+#!/usr/bin/python
+
+import os, json
 import string
 import subprocess
 
@@ -17,7 +18,6 @@ required = [
             },
        
         {'name': 'geopy', 'lang': 'py'}
-        #{'name': 'GDAL', 'lang': 'py'} Build error
         ]
 
 class ResourceManager(object):
@@ -50,13 +50,12 @@ class JSLanguageManager(LanguageManager):
         super( JSLanguageManager, self ).__init__()
 
         if not os.path.exists( 'libraries/js/node_modules' ):
-            os.mkdir( 'libraries/js/node_modules' )
+            os.makedirs( 'libraries/js/node_modules' )
 
     def Manage(self, requirement ):
 
         if 'targets' in requirement.keys():
             URLResourceManager( requirement['targets'], 'libraries/js/%s' % requirement['name']).Get()
-            pass
         else:
             if not os.path.exists( 'libraries/js/node_modules/%s' % requirement['name'] ):
 

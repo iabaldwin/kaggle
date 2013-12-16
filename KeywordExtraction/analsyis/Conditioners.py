@@ -1,13 +1,18 @@
 import string
 
 class Conditioner(object):
-
+    """
+    Condition a string of text.
+    """
     def __init__(self, text):
         self._text = text
 
 class CaseConditioner(Conditioner):
-
+    
     def __init__(self, text) :
+        """
+        Condition the case of a string of text.
+        """
         super(CaseConditioner,self).__init__( text )
 
     def Condition(self):
@@ -16,6 +21,9 @@ class CaseConditioner(Conditioner):
 class PunctuationConditioner(Conditioner):
 
     def __init__(self, text) :
+        """
+        Condition a string of text, removing all punctuation.
+        """
         super(PunctuationConditioner,self).__init__( text )
 
     def Condition(self):
@@ -34,4 +42,3 @@ class StopWordsConditioner(Conditioner):
         text_set = set( self._text.split() )
 
         return ' '.join( text_set.difference( self._stop_words ) )
-

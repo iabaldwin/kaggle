@@ -25,4 +25,3 @@ if __name__=="__main__":
     f = Document( 1 )
 
     print f._tags
-

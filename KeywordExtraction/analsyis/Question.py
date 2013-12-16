@@ -22,7 +22,6 @@ class ZeroPredicate(Predicate):
     def __init__(self):
         super(ZeroPredicate).__init__(self)
 
-
 class Question:
 
     def __init__(self, number ):
