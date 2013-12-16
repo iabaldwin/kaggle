@@ -10,6 +10,9 @@ function airport_locations()
             'dataType': "json",
             'success': function (locations) {
                 IAB.airport_locations = locations;
+            },
+            'failure': function (err) {
+                console.err( 'Unable to load data' );
             }
         });
 

@@ -29,7 +29,6 @@ class LatLongExtractor:
 
 if __name__=="__main__":
 
-
     if len(sys.argv) < 2:
         LatLongExtractor( open('../data/train.csv', 'r') ).Build( 'locations.json' )
     else:
