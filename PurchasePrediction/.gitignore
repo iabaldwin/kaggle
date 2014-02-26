@@ -1,0 +1,14 @@
+# Virtualenv
+*.env/
+
+# Python 
+*.pyc
+
+# Libraries
+libraries/
+
+# Data
+data/
+
+# Intermediate
+stage/
