@@ -6,8 +6,6 @@ function run()
         
         data = json;
 
-        console.log( data )
-
         var bubble_map = new Datamap({
             scope: 'usa',
             element: document.getElementById("map"),
